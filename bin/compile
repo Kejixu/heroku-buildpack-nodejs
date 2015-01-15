@@ -31,6 +31,10 @@ trap build_failed ERR
 export_env_dir $env_dir
 export NPM_CONFIG_PRODUCTION=${NPM_CONFIG_PRODUCTION:-true}
 export NODE_MODULES_CACHE=${NODE_MODULES_CACHE:-true}
+export LD_LIBRARY_PATH=$build_dir/.heroku/vendor/lib/
+export PKG_CONFIG_PATH=$build_dir/.heroku/vendor/lib/pkgconfig/
+export CXXFLAGS="-I $build_dir/.heroku/vendor/include"
+export LDFLAGS="-L $build_dir/.heroku/vendor/lib/ -Wl,-rpath=$build_dir/.heroku/vendor/lib/"
 
 ####### Determine current state
 
